@@ -1,13 +1,20 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.BookDtos;
+<<<<<<< HEAD
+=======
+import com.example.demo.dto.BookDtos.BookResponse;
+>>>>>>> main
 import com.example.demo.entity.Book;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.CategoryRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 import java.util.List;
 
 @Service
@@ -35,6 +42,13 @@ public class BookService {
 
         return bookRepository.findAll(spec).stream().map(this::toResponse).toList();
     }
+<<<<<<< HEAD
+=======
+    public List<BookDtos.BookResponse> list(String author) {
+        List<Book> books = (author == null || author.isBlank()) ? bookRepository.findAll() : bookRepository.findByAuthorContainingIgnoreCase(author);
+        return books.stream().map(b -> new BookDtos.BookResponse(b.getId(), b.getTitle(), b.getAuthor(), b.getIsbn(), b.getCategory()==null?null:b.getCategory().getId(), b.getCopiesTotal(), b.getCopiesAvailable())).toList();
+    }
+>>>>>>> main
 
     @Transactional
     public BookDtos.BookResponse create(BookDtos.BookRequest req) {

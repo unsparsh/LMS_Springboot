@@ -1,8 +1,14 @@
 spring:
   datasource:
+<<<<<<< HEAD
     # Dev defaults aligned with docker-compose
     url: ${DB_URL:jdbc:postgresql://localhost:5432/lms}
     username: ${DB_USERNAME:lms}
     password: ${DB_PASSWORD:lms}
   flyway:
     enabled: ${FLYWAY_ENABLED:true}
+=======
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/lms_dev}
+    username: ${DB_USERNAME:devuser}
+    password: ${DB_PASSWORD:devuser@2022}
+>>>>>>> main
