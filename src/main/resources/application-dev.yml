@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    # Dev defaults aligned with docker-compose
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/lms}
+    username: ${DB_USERNAME:lms}
+    password: ${DB_PASSWORD:lms}
+  flyway:
+    enabled: ${FLYWAY_ENABLED:true}
