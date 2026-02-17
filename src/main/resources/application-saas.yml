@@ -1,0 +1,7 @@
+camunda:
+  client:
+    mode: saas
+  base-url: ${CAMUNDA_BASE_URL}
+  auth:
+    strategy: OAUTH
+    token: ${CAMUNDA_AUTH_TOKEN:}

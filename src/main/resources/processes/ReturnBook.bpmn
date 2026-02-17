@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" id="defs2" targetNamespace="lms">
+  <bpmn:process id="ReturnBook" isExecutable="true">
+    <bpmn:startEvent id="start"/>
+    <bpmn:sequenceFlow id="f1" sourceRef="start" targetRef="updateInventory"/>
+    <bpmn:serviceTask id="updateInventory" name="Update Inventory"><bpmn:extensionElements><zeebe:taskDefinition type="update-inventory"/></bpmn:extensionElements></bpmn:serviceTask>
+    <bpmn:sequenceFlow id="f2" sourceRef="updateInventory" targetRef="computeFine"/>
+    <bpmn:serviceTask id="computeFine" name="Compute Overdue Fine"><bpmn:extensionElements><zeebe:taskDefinition type="compute-fine"/></bpmn:extensionElements></bpmn:serviceTask>
+    <bpmn:sequenceFlow id="f3" sourceRef="computeFine" targetRef="receipt"/>
+    <bpmn:serviceTask id="receipt" name="Send Receipt Email"/>
+    <bpmn:sequenceFlow id="f4" sourceRef="receipt" targetRef="end"/>
+    <bpmn:endEvent id="end"/>
+  </bpmn:process>
+</bpmn:definitions>

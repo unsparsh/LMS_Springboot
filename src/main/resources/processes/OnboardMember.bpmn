@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="defs4" targetNamespace="lms">
+  <bpmn:process id="OnboardMember" isExecutable="true">
+    <bpmn:startEvent id="start"/>
+    <bpmn:sequenceFlow id="f1" sourceRef="start" targetRef="approval"/>
+    <bpmn:userTask id="approval" name="Optional Librarian Approval"/>
+    <bpmn:sequenceFlow id="f2" sourceRef="approval" targetRef="welcome"/>
+    <bpmn:serviceTask id="welcome" name="Welcome Email Connector"/>
+    <bpmn:sequenceFlow id="f3" sourceRef="welcome" targetRef="end"/>
+    <bpmn:endEvent id="end"/>
+  </bpmn:process>
+</bpmn:definitions>

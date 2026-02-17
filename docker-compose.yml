@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: lms
+      POSTGRES_USER: lms
+      POSTGRES_PASSWORD: lms
+    ports:
+      - "5432:5432"
+  app:
+    build: .
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/lms
+      DB_USERNAME: lms
+      DB_PASSWORD: lms
+      CAMUNDA_BASE_URL: http://host.docker.internal:8088
+      JWT_SECRET: change-me-change-me-change-me-1234567890
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
