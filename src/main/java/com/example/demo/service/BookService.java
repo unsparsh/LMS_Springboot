@@ -5,7 +5,10 @@ import com.example.demo.entity.Book;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.CategoryRepository;
 import jakarta.transaction.Transactional;
+<<<<<<< HEAD
 import org.springframework.data.jpa.domain.Specification;
+=======
+>>>>>>> main
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,7 @@ public class BookService {
         this.categoryRepository = categoryRepository;
     }
 
+<<<<<<< HEAD
     public List<BookDtos.BookResponse> list(String author, Long categoryId, Boolean availableOnly) {
         Specification<Book> spec = Specification.where(null);
 
@@ -34,10 +38,16 @@ public class BookService {
         }
 
         return bookRepository.findAll(spec).stream().map(this::toResponse).toList();
+=======
+    public List<BookDtos.BookResponse> list(String author) {
+        List<Book> books = (author == null || author.isBlank()) ? bookRepository.findAll() : bookRepository.findByAuthorContainingIgnoreCase(author);
+        return books.stream().map(b -> new BookDtos.BookResponse(b.getId(), b.getTitle(), b.getAuthor(), b.getIsbn(), b.getCategory()==null?null:b.getCategory().getId(), b.getCopiesTotal(), b.getCopiesAvailable())).toList();
+>>>>>>> main
     }
 
     @Transactional
     public BookDtos.BookResponse create(BookDtos.BookRequest req) {
+<<<<<<< HEAD
         Book book = new Book();
         apply(book, req);
         return toResponse(bookRepository.save(book));
@@ -83,5 +93,13 @@ public class BookService {
     private BookDtos.BookResponse toResponse(Book b) {
         return new BookDtos.BookResponse(b.getId(), b.getTitle(), b.getAuthor(), b.getIsbn(),
                 b.getCategory() == null ? null : b.getCategory().getId(), b.getCopiesTotal(), b.getCopiesAvailable());
+=======
+        Book b = new Book();
+        b.setTitle(req.title()); b.setAuthor(req.author()); b.setIsbn(req.isbn());
+        b.setCopiesTotal(req.copiesTotal()); b.setCopiesAvailable(req.copiesAvailable());
+        if (req.categoryId() != null) b.setCategory(categoryRepository.findById(req.categoryId()).orElseThrow());
+        b = bookRepository.save(b);
+        return new BookDtos.BookResponse(b.getId(), b.getTitle(), b.getAuthor(), b.getIsbn(), b.getCategory()==null?null:b.getCategory().getId(), b.getCopiesTotal(), b.getCopiesAvailable());
+>>>>>>> main
     }
 }
