@@ -13,6 +13,13 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
+<<<<<<< HEAD
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
+=======
+>>>>>>> main
     @GetMapping("/books")
     public List<BookDtos.BookResponse> books(@RequestParam(required = false) String author,
                                              @RequestParam(required = false) Long categoryId,
@@ -22,12 +29,20 @@ public class BookController {
 
     @PostMapping("/admin/books")
     @ResponseStatus(HttpStatus.CREATED)
+<<<<<<< HEAD
+    public BookDtos.BookResponse create(@Valid @RequestBody BookDtos.BookRequest request) {
+=======
     public BookDtos.BookResponse create1(@Valid @RequestBody BookDtos.BookRequest request) {
+>>>>>>> main
         return bookService.create(request);
     }
 
     @PutMapping("/admin/books/{id}")
+<<<<<<< HEAD
+    public BookDtos.BookResponse update(@PathVariable Long id, @Valid @RequestBody BookDtos.BookRequest request) {
+=======
     public BookDtos.BookResponse update1(@PathVariable Long id, @Valid @RequestBody BookDtos.BookRequest request) {
+>>>>>>> main
         return bookService.update(id, request);
     }
 
@@ -38,6 +53,11 @@ public class BookController {
 
     @DeleteMapping("/admin/books/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+<<<<<<< HEAD
+    public void delete(@PathVariable Long id) {
+        bookService.delete(id);
+    }
+=======
     public void delete1(@PathVariable Long id) {
         bookService.delete(id);
     }
@@ -61,4 +81,5 @@ public class BookController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) { }
 
+>>>>>>> main
 }
