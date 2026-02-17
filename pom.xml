@@ -95,7 +95,7 @@ camunda.client.auth.audience=false
   <artifactId>camunda-spring-boot-starter</artifactId>
   <version>8.8.6</version>
 </dependency>
-		
+	
 	</dependencies>
 
 	<build>
