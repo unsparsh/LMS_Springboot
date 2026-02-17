@@ -12,11 +12,6 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class BookController {
     private final BookService bookService;
-<<<<<<< HEAD
-
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @GetMapping("/books")
     public List<BookDtos.BookResponse> books(@RequestParam(required = false) String author,
@@ -27,12 +22,12 @@ public class BookController {
 
     @PostMapping("/admin/books")
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDtos.BookResponse create(@Valid @RequestBody BookDtos.BookRequest request) {
+    public BookDtos.BookResponse create1(@Valid @RequestBody BookDtos.BookRequest request) {
         return bookService.create(request);
     }
 
     @PutMapping("/admin/books/{id}")
-    public BookDtos.BookResponse update(@PathVariable Long id, @Valid @RequestBody BookDtos.BookRequest request) {
+    public BookDtos.BookResponse update1(@PathVariable Long id, @Valid @RequestBody BookDtos.BookRequest request) {
         return bookService.update(id, request);
     }
 
@@ -43,10 +38,10 @@ public class BookController {
 
     @DeleteMapping("/admin/books/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void delete1(@PathVariable Long id) {
         bookService.delete(id);
     }
-=======
+
     public BookController(BookService bookService) { this.bookService = bookService; }
 
     @GetMapping("/books")
@@ -65,5 +60,5 @@ public class BookController {
     @DeleteMapping("/admin/books/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) { }
->>>>>>> main
+
 }

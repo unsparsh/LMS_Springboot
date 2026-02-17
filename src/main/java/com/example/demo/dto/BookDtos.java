@@ -6,12 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 public class BookDtos {
     public record BookRequest(@NotBlank String title, @NotBlank String author, @NotBlank String isbn, Long categoryId,
                               @Min(1) Integer copiesTotal, @Min(0) Integer copiesAvailable) {}
-<<<<<<< HEAD
 
     public record BookPatchRequest(String title, String author, String isbn, Long categoryId,
                                    @Min(1) Integer copiesTotal, @Min(0) Integer copiesAvailable) {}
 
-=======
->>>>>>> main
     public record BookResponse(Long id, String title, String author, String isbn, Long categoryId, Integer copiesTotal, Integer copiesAvailable) {}
 }
