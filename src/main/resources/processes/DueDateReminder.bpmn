@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="defs3" targetNamespace="lms">
+  <bpmn:process id="DueDateReminder" isExecutable="true">
+    <bpmn:startEvent id="start"><bpmn:timerEventDefinition><bpmn:timeCycle>R/PT24H</bpmn:timeCycle></bpmn:timerEventDefinition></bpmn:startEvent>
+    <bpmn:sequenceFlow id="f1" sourceRef="start" targetRef="sendDueReminder"/>
+    <bpmn:serviceTask id="sendDueReminder" name="Send Reminder Email"/>
+    <bpmn:sequenceFlow id="f2" sourceRef="sendDueReminder" targetRef="computeFine"/>
+    <bpmn:serviceTask id="computeFine" name="Compute Fine at Grace End"/>
+    <bpmn:sequenceFlow id="f3" sourceRef="computeFine" targetRef="notify"/>
+    <bpmn:serviceTask id="notify" name="Notify Member"/>
+    <bpmn:sequenceFlow id="f4" sourceRef="notify" targetRef="end"/>
+    <bpmn:endEvent id="end"/>
+  </bpmn:process>
+</bpmn:definitions>
